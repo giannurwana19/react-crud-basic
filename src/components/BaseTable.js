@@ -1,6 +1,6 @@
 import { Table } from 'react-bootstrap';
 
-function BaseTable() {
+function BaseTable(props) {
   return (
     <>
       <Table striped bordered hover>
@@ -14,13 +14,17 @@ function BaseTable() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-          </tr>
+          {props.foods.map(food => {
+            return (
+              <tr key={food.id}>
+                <td>{food.id}</td>
+                <td>{food.name}</td>
+                <td>{food.description}</td>
+                <td>{food.price}</td>
+                <td></td>
+              </tr>
+            );
+          })}
         </tbody>
       </Table>
     </>

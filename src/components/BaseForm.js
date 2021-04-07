@@ -1,6 +1,6 @@
 import { Button, Col, Form, Row } from 'react-bootstrap';
 
-function BaseForm() {
+function BaseForm(props) {
   return (
     <div className="mt-3">
       <Row>
@@ -11,12 +11,14 @@ function BaseForm() {
       </Row>
       <Row>
         <Col md={8}>
-          <Form>
+          <Form onSubmit={props.handleSubmit}>
             <Form.Group controlId="name">
               <Form.Label>Nama Makanan</Form.Label>
               <Form.Control
                 type="text"
                 name="name"
+                value={props.name}
+                onChange={event => props.handleChange(event)}
                 placeholder="Mie ayam ceker"
               />
             </Form.Group>
@@ -26,6 +28,8 @@ function BaseForm() {
               <Form.Control
                 as="textarea"
                 name="description"
+                value={props.description}
+                onChange={event => props.handleChange(event)}
                 placeholder="Contoh: mie ayam level pedas"
                 rows={3}
               />
@@ -33,7 +37,13 @@ function BaseForm() {
 
             <Form.Group controlId="price">
               <Form.Label>Harga Makanan</Form.Label>
-              <Form.Control type="number" name="price" placeholder={0} />
+              <Form.Control
+                type="number"
+                name="price"
+                value={props.price}
+                onChange={event => props.handleChange(event)}
+                placeholder={0}
+              />
             </Form.Group>
 
             <Button variant="primary" type="submit">
