@@ -6,7 +6,6 @@ function BaseTable(props) {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>#</th>
             <th>Nama Makanan</th>
             <th>Deskripsi</th>
             <th>Harga</th>
@@ -17,7 +16,6 @@ function BaseTable(props) {
           {props.foods.map((food, index) => {
             return (
               <tr key={index + 1}>
-                <td>{food.id}</td>
                 <td>{food.name}</td>
                 <td>{food.description}</td>
                 <td>{food.price}</td>

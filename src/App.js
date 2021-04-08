@@ -16,6 +16,22 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    const foods = this.getData();
+
+    this.setState({
+      foods,
+    });
+  }
+
+  getData = () => JSON.parse(localStorage.getItem('foods')) || [];
+
+  saveData = value => {
+    const data = JSON.stringify(value);
+
+    localStorage.setItem('foods', data);
+  };
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -35,27 +51,37 @@ class App extends Component {
   };
 
   store = () => {
-    this.setState(state => ({
-      foods: state.foods.concat({
-        id: state.foods.length + 1,
-        name: state.name,
-        description: state.description,
-        price: state.price,
+    this.setState(
+      state => ({
+        foods: state.foods.concat({
+          id: state.foods.length + 1,
+          name: state.name,
+          description: state.description,
+          price: state.price,
+        }),
       }),
-    }));
+      () => {
+        this.saveData(this.state.foods);
+      }
+    );
   };
 
   update = id => {
     const notSelectedFood = this.state.foods.filter(food => food.id !== id);
 
-    this.setState(state => ({
-      foods: notSelectedFood.concat({
-        id: id,
-        name: state.name,
-        description: state.description,
-        price: state.price,
+    this.setState(
+      state => ({
+        foods: notSelectedFood.concat({
+          id: id,
+          name: state.name,
+          description: state.description,
+          price: state.price,
+        }),
       }),
-    }));
+      () => {
+        this.saveData(this.state.foods);
+      }
+    );
   };
 
   editData = id => {
@@ -72,9 +98,14 @@ class App extends Component {
   delete = id => {
     const foods = this.state.foods.filter(food => food.id !== id);
 
-    this.setState({
-      foods,
-    });
+    this.setState(
+      {
+        foods,
+      },
+      () => {
+        this.saveData(this.state.foods);
+      }
+    );
   };
 
   clearForm = () => {
