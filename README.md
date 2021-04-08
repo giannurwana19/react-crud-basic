@@ -9,6 +9,40 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Information : Project belajar CRUD Reactjs & Reactstrap wahidev
 ---
 
+### Build Project
+```
+$ yarn build
+yarn run v1.22.10
+$ react-scripts build
+Creating an optimized production build...
+Browserslist: caniuse-lite is outdated. Please run the following command: `npx browserslist --update-db`
+Compiled successfully.
+
+File sizes after gzip:
+
+  62.95 KB  build\static\js\2.8d05b341.chunk.js
+  22.68 KB  build\static\css\2.5c573378.chunk.css
+  1.71 KB   build\static\js\main.e5301e74.chunk.js
+  1.57 KB   build\static\js\3.32925cdb.chunk.js
+  1.17 KB   build\static\js\runtime-main.4242f5c5.js
+  278 B     build\static\css\main.6dea0f05.chunk.css
+
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+You may serve it with a static server:
+
+  yarn global add serve
+  serve -s build
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+
+Done in 44.85s.
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
