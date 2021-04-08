@@ -69,6 +69,14 @@ class App extends Component {
     });
   };
 
+  delete = id => {
+    const foods = this.state.foods.filter(food => food.id !== id);
+
+    this.setState({
+      foods,
+    });
+  };
+
   clearForm = () => {
     this.setState({
       id: '',
@@ -84,7 +92,11 @@ class App extends Component {
         <NavbarComp />
         <Container className="mt-4">
           <h2 className="mb-3">Data Makanan</h2>
-          <BaseTable foods={this.state.foods} editData={this.editData} />
+          <BaseTable
+            foods={this.state.foods}
+            editData={this.editData}
+            delete={this.delete}
+          />
           <BaseForm
             {...this.state}
             handleChange={this.handleChange}

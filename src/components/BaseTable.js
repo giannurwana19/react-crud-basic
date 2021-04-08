@@ -27,6 +27,11 @@ function BaseTable(props) {
                     onClick={() => props.editData(food.id)}>
                     Edit
                   </button>
+                  <button
+                    className="btn btn-danger ml-1 btn-sm"
+                    onClick={() => props.delete(food.id)}>
+                    Delete
+                  </button>
                 </td>
               </tr>
             );
