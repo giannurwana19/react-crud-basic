@@ -5,13 +5,13 @@ function BaseForm(props) {
     <div className="mt-3">
       <Row>
         <Col>
-          <h3>Tambah Data</h3>
+          <h3>{props.id ? 'Edit' : 'Tambah'} Data</h3>
           <hr />
         </Col>
       </Row>
       <Row>
         <Col md={8}>
-          <Form onSubmit={props.handleSubmit}>
+          <Form onSubmit={event => props.handleSubmit(event)}>
             <Form.Group controlId="name">
               <Form.Label>Nama Makanan</Form.Label>
               <Form.Control
@@ -20,6 +20,7 @@ function BaseForm(props) {
                 value={props.name}
                 onChange={event => props.handleChange(event)}
                 placeholder="Mie ayam ceker"
+                autoFocus
               />
             </Form.Group>
 
@@ -47,7 +48,7 @@ function BaseForm(props) {
             </Form.Group>
 
             <Button variant="primary" type="submit">
-              Submit
+              {props.id ? 'Update' : 'Submit'}
             </Button>
           </Form>
         </Col>

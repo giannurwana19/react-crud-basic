@@ -14,14 +14,20 @@ function BaseTable(props) {
           </tr>
         </thead>
         <tbody>
-          {props.foods.map(food => {
+          {props.foods.map((food, index) => {
             return (
-              <tr key={food.id}>
+              <tr key={index + 1}>
                 <td>{food.id}</td>
                 <td>{food.name}</td>
                 <td>{food.description}</td>
                 <td>{food.price}</td>
-                <td></td>
+                <td>
+                  <button
+                    className="btn btn-success btn-sm"
+                    onClick={() => props.editData(food.id)}>
+                    Edit
+                  </button>
+                </td>
               </tr>
             );
           })}

@@ -25,16 +25,48 @@ class App extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    if (this.state.id) {
+      this.update(this.state.id);
+    } else {
+      this.store();
+    }
+
+    this.clearForm();
+  };
+
+  store = () => {
     this.setState(state => ({
       foods: state.foods.concat({
         id: state.foods.length + 1,
         name: state.name,
         description: state.description,
-        price: state.description,
+        price: state.price,
       }),
     }));
+  };
 
-    this.clearForm();
+  update = id => {
+    const notSelectedFood = this.state.foods.filter(food => food.id !== id);
+
+    this.setState(state => ({
+      foods: notSelectedFood.concat({
+        id: id,
+        name: state.name,
+        description: state.description,
+        price: state.price,
+      }),
+    }));
+  };
+
+  editData = id => {
+    const selectedFood = this.state.foods.find(food => food.id === id);
+
+    this.setState({
+      id: selectedFood.id,
+      name: selectedFood.name,
+      description: selectedFood.description,
+      price: selectedFood.price,
+    });
   };
 
   clearForm = () => {
@@ -47,13 +79,12 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.foods);
     return (
       <Fragment>
         <NavbarComp />
         <Container className="mt-4">
           <h2 className="mb-3">Data Makanan</h2>
-          <BaseTable foods={this.state.foods} />
+          <BaseTable foods={this.state.foods} editData={this.editData} />
           <BaseForm
             {...this.state}
             handleChange={this.handleChange}
